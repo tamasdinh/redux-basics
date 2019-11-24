@@ -1,0 +1,39 @@
+body {
+  background-color: #111;
+  margin-top: 10vh;
+  font-size: 16px;
+  font-family: sans-serif;
+  color: #ddd;
+}
+
+.form-container {
+  display: flex;
+  justify-content: space-around;
+  min-height: 300px;
+}
+
+#Todos, #Goals {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-grow: 0.4;
+  min-height: 300px;
+}
+
+#todo-input-container, #goal-input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  min-height: 100px;
+}
+
+button {
+  border-radius: 10px;
+  background-color: rgb(15, 77, 136);
+  color: #ddd;
+  font-size: 0.8em;
+}
+
+input {
+  font-size: 0.8em;
+}
