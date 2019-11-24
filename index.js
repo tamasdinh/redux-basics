@@ -79,6 +79,29 @@ function goals(state = [], action) {
 }
 
 
+//  MIDDLEWARE
+const checker = (state) => (next) => (action) => {
+  if (action.type === ADD_TODO &&
+      action.todo.name.toLowerCase().includes('bitcoin')) {
+      return alert('Nope. Bitcoin is a bad idea!')
+  }
+  if (action.type === ADD_GOAL &&
+      action.goal.name.toLowerCase().includes('bitcoin')) {
+      return alert('Nope. No bitcoin goals!')
+  }
+  return next(action)
+}
+
+const logger = (state) => (next) => (action) => {
+  console.group(action.type)
+    console.log('The action:', action)
+    const result = next(action)
+    console.log('The new state:', store.getState())
+  console.groupEnd()
+  return result
+}
+
+
 //  UI interactivity
 function addToDo () {
   const input = document.getElementById('todos-input')
@@ -154,11 +177,11 @@ function addGoalToDOM (goal) {
 }
 
 
-// //  TESTS
+//  OPS
 const store = Redux.createStore(Redux.combineReducers({
   todos,
-  goals
-}))
+  goals,
+}), Redux.applyMiddleware(checker, logger))
 store.subscribe(() => {
   console.log('The new state is:', store.getState())
   
